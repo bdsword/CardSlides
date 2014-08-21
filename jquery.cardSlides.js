@@ -1,11 +1,15 @@
 (function($){
-    $.fn.cardSlides = function(itemsPerPage){
+    $.fn.cardSlides = function(options){
+        var options = $.extend({
+            itemsPerPage: 6
+        }, options);
+
         var pos = 0;
         var slidesContainer = this.find('.slides-container');
         var viewPort = this.children('.view-port');
         var slidesItems = slidesContainer.children('.slides-item');
         var slidesItemCount = slidesItems.size();
-        var containerWidth = (100/itemsPerPage)*slidesItemCount;
+        var containerWidth = (100/options.itemsPerPage)*slidesItemCount;
         slidesItems.css({
             "width": (100/slidesItemCount)+"%",
             "float": "left",
@@ -24,7 +28,7 @@
             var cardItemWidth = slidesItems.first().outerWidth();
             if( $(this).data('slides')==="previous" && pos<0 ){
                 pos += cardItemWidth;
-            }else if( $(this).data('slides')==="next" && pos>(-1*(slidesItemCount-itemsPerPage)*cardItemWidth) ){
+            }else if( $(this).data('slides')==="next" && pos>(-1*(slidesItemCount-options.itemsPerPage)*cardItemWidth) ){
                 pos -= cardItemWidth;
             }
             slidesContainer.attr('style', transitionGenerator('0.5s') +

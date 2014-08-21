@@ -11,6 +11,7 @@
             "float": "left",
             "position": "relative",
             "padding": "15px",
+            "box-sizing": "border-box",
             "-webkit-box-sizing": "border-box",
             "-moz-box-sizing": "border-box"
         });
@@ -23,7 +24,7 @@
             var cardItemWidth = slidesItems.first().outerWidth();
             if( $(this).data('slides')==="previous" && pos<0 ){
                 pos += cardItemWidth;
-            }else if( $(this).data('slides')==="next" && pos>(-1*(slidesItemCount-itemsPerPage)*cardItemWidth ) ){
+            }else if( $(this).data('slides')==="next" && pos>(-1*(slidesItemCount-itemsPerPage)*cardItemWidth) ){
                 pos -= cardItemWidth;
             }
             slidesContainer.attr('style', transitionGenerator('0.5s') +
